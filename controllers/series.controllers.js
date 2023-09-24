@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const getSeries = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM admseries.serie"
+      "SELECT * FROM serie"
     );
     res.json(result);
   } catch (error) {
@@ -14,7 +14,7 @@ export const getSeries = async (req, res) => {
 export const getSerie = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM admseries.serie WHERE idSerie= ?",
+      "SELECT * FROM serie WHERE idSerie= ?",
       [req.params.idSerie]
     );
 
@@ -41,7 +41,7 @@ export const createSerie = async (req, res) => {
       estado,
     } = req.body;
     const resultado = await pool.query(
-      "INSERT INTO admseries.serie(idSerie,titulo,fechaEstreno,estrellas,genero,precio,atp,estado,descripcion) VALUES (?, ?,?,?,?,?,?,?,?)",
+      "INSERT INTO serie(idSerie,titulo,fechaEstreno,estrellas,genero,precio,atp,estado,descripcion) VALUES (?, ?,?,?,?,?,?,?,?)",
       [idSerie, titulo, fechaEstreno, estrellas, genero, precio, atp, estado,descripcion]
     );
     console.log(resultado);
@@ -67,7 +67,7 @@ export const createSerie = async (req, res) => {
 export const updateSerie = async (req, res) => {
   try {
     const result = await pool.query(
-      "UPDATE admseries.serie SET ? WHERE idSerie = ?",
+      "UPDATE serie SET ? WHERE idSerie = ?",
       [req.body, req.params.idSerie]
     );
     res.json(result);
@@ -79,7 +79,7 @@ export const updateSerie = async (req, res) => {
 export const deleteSerie = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "DELETE FROM admseries.serie WHERE idSerie= ?",
+      "DELETE FROM serie WHERE idSerie= ?",
       [req.params.idSerie]
     );
 
@@ -97,7 +97,7 @@ export const getUser = async (req, res) => {
  
   try {
     const [result] = await pool.query(
-      "SELECT * FROM admseries.users "
+      "SELECT * FROM users "
     );
     res.json(result);
   } catch (error) {
